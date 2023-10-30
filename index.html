@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h3 id="heading">Digital Clock</h3>
+        </div>
+        <div class="btns">
+            <button class="btn stopwatch-btn">Stopwatch</button>
+            <button class="btn timer-btn">Timer</button>
+            <button class="btn alarm-btn">Alarm</button>
+            <button class="btn wc-btn">World Clock</button>
+        </div>
+        <div class="outer-wrapper">
+
+            <!-- ----- CLOCK ----- -->
+            
+            <div class="clock ">
+                <div class="wrapper">
+                    <div class="main">
+                        <div class="hour">
+                            <p class="number" id="hour">02</p>
+                            <p>hours</p>
+                        </div>
+                        <p class="colon">:</p>
+                        <div class="min">
+                            <p class="number" id="min">02</p>
+                            <p>minutes</p>
+                        </div>
+                        <p class="colon">:</p>
+                        <div class="sec">
+                            <p class="number" id="sec">02</p>
+                            <p>seconds</p>
+                        </div> 
+                        <p class="colon">:</p>
+                        <div class="ampm">
+                            <p class="number" id="ampm">AM</p>
+                            <p class="other-ampm">PM </p>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <div class="btns">
+                    <button class="btn">Stopwatch</button>
+                    <button class="btn">Timer</button>
+                </div> -->
+            </div>  
+
+            <!-- ----- STOPWATCH ----- -->
+            <div class="stopwatch hidden">
+                <div class="wrapper">
+                    <div class="main">
+                        <div class="hour">
+                            <p class="number" id="stopwatch-hour">00</p>
+                            <p>hours</p>
+                        </div> <p class="colon">:</p>
+                        <div class="min">
+                            <p class="number" id="stopwatch-min">00</p>
+                            <p>minutes</p>
+                        </div> <p class="colon">:</p>
+                        <div class="sec">
+                            <p class="number" id="stopwatch-sec">00</p>
+                            <p>seconds</p>
+                        </div> <p class="colon">:</p>
+                        <div class="milisecond">
+                            <p class="number" id="stopwatch-ms">00</p>
+                            <p>milisecond</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="laps">
+                    <!-- <div class="lap active">
+                        <p>Lap 2</p>
+                        <p>00:00</p>
+                    </div>
+                    <div class="lap">
+                        <p>Lap 1</p>
+                        <p>00:00</p>
+                    </div> -->
+                </div>
+
+                <div class="btns">
+                    <button class="btn start-stopwatch">Start</button>
+                    <button class="btn lap-stopwatch hidden">Lap</button>
+                    <button class="btn reset-stopwatch">Reset</button>
+                    <button class="btn back-btn">Back</button>
+                </div>
+            </div>
+
+            <!-- ----- TIMER ----- -->
+            <div class="timer hidden">
+                <div class="wrapper">
+                    <div class="main">
+                        <div class="hour">
+                            <p class="number" id="timer-hour">00</p>
+                            <p>hours</p>
+                        </div> <p class="colon">:</p>
+                        <div class="min">
+                            <p class="number" id="timer-min">00</p>
+                            <p>minutes</p>
+                        </div> <p class="colon">:</p>
+                        <div class="sec">
+                            <p class="number" id="timer-sec">00</p>
+                            <p>seconds</p>
+                        </div> <p class="colon">:</p>
+                        <div class="milisecond">
+                            <p class="number" id="timer-ms">00</p>
+                            <p>milisecond</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="btns">
+                    <button class="btn start-timer">Start</button>
+                    <button class="btn stop-timer hidden">Stop</button>
+                    <button class="btn reset-timer">Reset</button>
+                    <button class="btn back-btn">Back</button>
+                </div>
+            </div>
+
+            <!-- ----- ALARM ----- -->
+
+            <div class="mainAlarm hidden">
+                <div class="wrapper">
+                    <div class="main">
+                        <center>
+                            <div class="timer-display">00:00:00</div>
+                            <div class="inputs">
+                                <input type="number" id="hourInput" placeholder="00" min="0" max="23"/>
+                                <input type="number" id="minuteInput" placeholder="00" min="0" max="59"/>
+                            </div>
+                            <div class="btns">
+                                <button  class="btn" id="set">Set Alarm</button>
+                                <div class="activeAlarms"></div>
+                            </div>
+                            
+                        </center>
+                       
+                    </div>
+                </div>
+                <div class="btns">
+                    <button class="btn back-btn">Back</button>
+                </div>
+            </div>
+
+            <!-- ----- WORLD CLOCK ----- -->
+
+            <div class="wc hidden">
+            <div class="wrapper">
+            <div class="main">
+                <!-- <h3>World Clock</h3> -->
+
+                <label for="timezone">Select a timezone:</label>
+                <select class="dropDown" id="timezone"></select>
+
+                <button class="btns btn " onclick="showTime()">Get Current Time</button>
+                <div id="current-time"></div>   
+            </div>
+            </div>
+            <div class="btns">
+                <button class="btn back-btn">Back</button>
+            </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ----- JQUERY ----- -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
